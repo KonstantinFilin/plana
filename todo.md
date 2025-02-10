@@ -10,15 +10,16 @@
 
 # Tasks
 
-- model and migration
++ model and migration
++ dtlist generator
 - period pager
 - add a task
 - edit a task
 - delete a task
 - plan for a task
 - closing a task
-- priority
-- duration
+- change priority
+- change duration
 
 
 # Reports

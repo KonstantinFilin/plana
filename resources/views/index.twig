@@ -4,4 +4,13 @@
 
 {% block content %}
     <h1>Главная страница</h1>
+    
+    Период: {{ period }}
+    <br />
+    dt: {{ today }}
+    
+    {% for d in dtList %}
+        <p>{{ d }}</p>
+    {% endfor %}
+    
 {% endblock %}
