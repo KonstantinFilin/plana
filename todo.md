@@ -1,12 +1,12 @@
 # Prepare
 
-- install laravel
-- db
-- debug bar
-- twig
-- bootstrap
-- homepage
-- menu & test page 2
++ install laravel
++ db
++ debug bar
++ twig
++ bootstrap
++ homepage
++ menu & test page 2
 
 # Tasks
 
