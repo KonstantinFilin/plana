@@ -9,8 +9,15 @@
     <br />
     dt: {{ today }}
     
+    
+    <table>
+        <tr>
     {% for d in dtList %}
-        <p>{{ d }}</p>
+        <td>
+            {% include 'day_plan' %}
+        </td>
     {% endfor %}
+        </tr>
+    </table>
     
 {% endblock %}
