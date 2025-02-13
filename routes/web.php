@@ -2,46 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/{period?}', function (?int $period = 7) {
-    
-    $dayObj = new \DateTimeImmutable(); // \DateTimeImmutable::createFromFormat("Y-m-d", "2025-02-09");
-    $dtList = getDtList($dayObj, $period);
-    
-    $content = [
-        "dtList" => $dtList,
-        "today" => $dayObj->format("d.m.Y"),
-        "period" => $period
-    ];
+use App\Http\Controllers\IndexController;
 
-    return view('index', $content);
-})->where("period", "3|7|30");
+Route::get('/{period?}', [IndexController::class, 'index'])->where("period", "3|7|30");
+Route::get('/schedule/{dt}/{period}', [IndexController::class, 'schedule'])
+        ->where("period", "3|7|30")
+        ->where("dt", "\d{8}")->name('schedule');
 
 Route::get('/reports', function () {
     return view('reports');
 })->name("reports");
 
-function getDtList(\DateTimeImmutable $dayObj, int $period): array {
-    
-    $cnt = $period - 1;
-    $p = new \DateInterval("P1D");
-    $curDt = $dayObj;
-    $dtList = [];
-    
-    if ($period == 30) {
-        $mgs = new App\Services\MonthGeneratorService($dayObj);
-        $dtList = $mgs->run();        
-    } elseif ($period == 7) {
-        $wgs = new App\Services\WeekGeneratorService($dayObj);
-        $dtList = $wgs->run();
-    } else {
-        $dtList[] = $dayObj->format("d.m.Y");
-
-        while ($cnt > 0) {
-            $curDt = $curDt->add($p);
-            $dtList[] = $curDt->format("d.m.Y");
-            $cnt--;
-        }
-    }
-    
-    return $dtList;    
-}

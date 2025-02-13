@@ -1,0 +1,71 @@
+    <table class="table table-condensed">
+    <tr>
+        <th class="text-center">
+            <button type="button" class="btn btn-outline-secondary planner-control"
+                    data-period='{{ pv.periodDuration }}' data-dt="{{ pv.getPrevDt.format("Ymd") }}">
+                <img src="/i/arrow-left.svg" width="50" height="50" />
+            </button>
+        </th>
+        <th colspan="{{ pv.getDtList | length }}" class="text-center">
+            <button type="button" class="btn btn-outline-secondary planner-control" 
+                    data-period='3' data-dt="{{ pv.selectedDt.format("Ymd") }}"
+                    {% if pv.periodDuration == 3 %}disabled{% endif %}
+                    >3</button>
+            &nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-outline-secondary planner-control"
+                    data-period='7' data-dt="{{ pv.selectedDt.format("Ymd") }}"
+                    {% if pv.periodDuration == 7 %}disabled{% endif %}
+                    >7</button>
+            &nbsp;&nbsp;&nbsp;
+            <button type="button" class="btn btn-outline-secondary planner-control"
+                    data-period='30' data-dt="{{ pv.selectedDt.format("Ymd") }}"
+                    {% if pv.periodDuration == 30 %}disabled{% endif %}
+                    >30</button>
+        </th>
+        <th class="text-center">
+            <button type="button" class="btn btn-outline-secondary planner-control"
+                    data-period='{{ pv.periodDuration }}' data-dt="{{ pv.getNextDt.format("Ymd") }}">
+                <img src="/i/arrow-right.svg" width="50" height="50" />
+            </button>
+        </th>
+    </tr>        
+    <tr>
+        <th></th>
+    {% for d in pv.getDtList %}
+        <th
+            {% if d.format("Ymd") == pv.getTodayDt().format("Ymd")  %}class="table-primary"{% endif %}
+        >{% include 'day_plan1' %}</th>
+    {% endfor %}
+        <th></th>
+    </tr>
+    <tr>
+        <th></th>
+    {% for d in pv.getDtList %}
+        {% if d.format("N") in [6,7] %}
+        <th class="table-danger">{% include 'day_plan2' %}</th>
+        {% elseif d.format("N") in [3] %}
+        <th class="table-warning">{% include 'day_plan2' %}</th>
+        {% else %}
+        <th>{% include 'day_plan2' %}</th>
+        {% endif %}
+    {% endfor %}
+        <th></th>
+    </tr>
+    <tr>
+        <th></th>
+    {% for d in pv.getDtList %}
+        <td>{% include 'day_plan3' %}</td>
+    {% endfor %}
+        <th></th>
+    </tr>
+    {% for h in 10..21 %}
+    <tr>
+        <th>{{ h }}:00</th>
+        {% for d in pv.getDtList %}
+            <td></td>
+        {% endfor %}
+        <th></th>
+    </tr>
+    {% endfor %}
+    </table>
+    

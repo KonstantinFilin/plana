@@ -9,7 +9,7 @@ class WeekGeneratorService {
      */
     private $sourceDt;
     
-    public function __construct(\DateTimeImmutable $sourceDt) {
+    public function __construct(\DateTime $sourceDt) {
         $this->sourceDt = clone $sourceDt;
     }
     
@@ -22,8 +22,8 @@ class WeekGeneratorService {
         $ret = [];
         
         for($i = 1; $i <= 7; $i++) {
-            $ret[] = $curDt->format("d.m.Y");
-            $curDt = $curDt->add($p1);
+            $ret[] = clone $curDt;
+            $curDt->add($p1);
         }
         
         return $ret;

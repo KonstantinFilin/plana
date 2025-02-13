@@ -12,8 +12,10 @@
 
 + model and migration
 + dtlist generator
-- period pager
++ period pager
+- view for 30 days
 - add a task
+- add a short task
 - edit a task
 - delete a task
 - plan for a task

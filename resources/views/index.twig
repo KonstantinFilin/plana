@@ -5,19 +5,43 @@
 {% block content %}
     <h1>Главная страница</h1>
     
-    Период: {{ period }}
+    Период: {{ pv.selectedDt.format("d.m.Y") }}
     <br />
-    dt: {{ today }}
+    dt: {{ pv.getTodayDt().format("d.m.Y") }}
     
+    <br /><br />
     
-    <table>
-        <tr>
-    {% for d in dtList %}
-        <td>
-            {% include 'day_plan' %}
-        </td>
-    {% endfor %}
-        </tr>
-    </table>
+    <div id="planner">
+        {% include 'planner' %}
+    </div>
+    
+    <br /><br />    
+    
+{% endblock %}
+
+{% block js %}
+    <script>
+        window.addEventListener('load', function () {
+            runPlannerControl();
+        });
+        
+        function runPlannerControl() {
+            const ellist = document.getElementsByClassName("planner-control");
+            for (let e of ellist) {
+                e.onclick = function () {
+                    const target = document.getElementById('planner');
+                    target.innerHTML = '...';
+                    const url = "/schedule/" + this.getAttribute('data-dt') + "/" + + this.getAttribute('data-period');
+                    
+                    fetch(url)
+                        .then(response => response.text())
+                        .then(t => { 
+                            target.innerHTML = t; 
+                            runPlannerControl();
+                        });
+                }
+            }
+        }
+    </script>
     
 {% endblock %}
