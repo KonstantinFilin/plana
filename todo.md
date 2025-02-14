@@ -13,7 +13,7 @@
 + model and migration
 + dtlist generator
 + period pager
-- view for 30 days
++ view for 30 days
 - task group
 - add a task
 - add a short task
@@ -24,6 +24,11 @@
 - change priority
 - change duration
 
+- weekly task
+- monthly task
+- daily task
+- numeric task
+- numeric weekly task
 
 # Reports
 

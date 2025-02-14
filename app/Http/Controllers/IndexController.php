@@ -18,8 +18,9 @@ class IndexController extends Controller
         
         $dtObj = \DateTime::createFromFormat("Ymd", $dt);
         $pv = new \App\Models\PlannerView($period, $dtObj);
+        $tpl = $period == 30 ? 'planner30' : 'planner';
         
-        return view('planner', [
+        return view($tpl, [
             'pv' => $pv
         ]);
     }
