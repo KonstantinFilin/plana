@@ -111,6 +111,21 @@ class Twig implements \Twig\Extension\ExtensionInterface
                 }
             ),
             new \Twig\TwigFilter(
+                'weekdaynum2rus',
+                function ($num) {
+                    $data = [
+                        1 => "Пн",
+                        2 => "Вт",
+                        3 => "Ср",
+                        4 => "Чт",
+                        5 => "Пт",
+                        6 => "Сб",
+                        7 => "Вс",
+                    ];
+                    return $data[$num] ?? '???';
+                }
+            ),
+            new \Twig\TwigFilter(
                 'price_str',
                 function ($num) {
                     $nul = 'ноль';

@@ -62,7 +62,10 @@
     <tr>
         <th>{{ h }}:00</th>
         {% for d in pv.getDtList %}
-            <td></td>
+            <td
+               {% if pv.getTodayDt().format("H") == h %}  class="table-primary"{% endif %}         
+            >                                                                                                  
+            </td>
         {% endfor %}
         <th></th>
     </tr>
