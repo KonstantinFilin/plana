@@ -14,6 +14,7 @@
 + dtlist generator
 + period pager
 - view for 30 days
+- task group
 - add a task
 - add a short task
 - edit a task
