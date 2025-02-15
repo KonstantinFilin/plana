@@ -6,8 +6,8 @@ use Illuminate\Http\Request;
 
 class IndexController extends Controller
 {
-    public function index(?int $period = 3) {
-        $pv = new \App\Models\PlannerView($period);
+    public function index() {
+        $pv = new \App\Models\PlannerView(3);
 
         return view('index', [
             'pv' => $pv

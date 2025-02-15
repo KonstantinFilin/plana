@@ -1,0 +1,33 @@
+    <div class="position-relative row form-group">
+        <label for="pic" class="col-sm-2 col-form-label">{{ elLabel }}</label>
+        <div class="col-sm-10">
+            {% if path %}
+            <div class="pic-not-empty">
+                <img src="{{ path }}" width="200" />
+                <button type="button" 
+                        data-token="{{ csrf_token() }}"
+                        data-url="{{ url }}" 
+                        class="btn btn-danger pic-del"
+                   >Удалить</button>
+            </div>
+            <div class="pic-empty" style="display: none;">
+                <input type="input" name="{{ id }}" class="form-control" id="{{ id }}" />
+                <img src="" width="300" id="{{ id2 }}" />
+                <button type="button" 
+                    class="btn btn-outline-secondary btn-sm gallery"
+                    data-target="{{ id2 }}"
+                    data-target2="{{ id }}"
+                    >Выбрать из галереи</button>
+            </div>
+
+            {% else %}
+                <input type="input" name="{{ id }}" class="form-control" id="{{ id }}" />
+                <img src="" width="300" id="{{ id2 }}" />
+                <button type="button" 
+                    class="btn btn-outline-secondary btn-sm gallery"
+                    data-target="{{ id2 }}"
+                    data-target2="{{ id }}"
+                    >Выбрать из галереи</button>
+            {% endif %}
+        </div>
+    </div>

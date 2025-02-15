@@ -14,7 +14,14 @@
 + dtlist generator
 + period pager
 + view for 30 days
-- task group
++ task group
+    -- JS Tree
+    -- Model and table
+    -- Test data
+    -- Fill data from database
+    -- Edit list
+    -- Delete list
+    -- Add a child
 - add a task
 - add a short task
 - edit a task

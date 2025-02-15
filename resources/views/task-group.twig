@@ -1,0 +1,95 @@
+{% extends "layout" %}
+
+{% block title %}Группы задач{% endblock %}
+
+{% block css %}
+    <link rel="stylesheet" href="/3rd/treejs-master/treejs.css">
+
+    <link rel="stylesheet" 
+          href="https://use.fontawesome.com/releases/v5.1.0/css/all.css" 
+          integrity="sha384-lKuwvrZot6UHsBSfcMvOkWwlCMgc0TaWr+30HWe3a4ltaBwTZhyTEggF5tJv8tbt" 
+          crossorigin="anonymous">
+{% endblock %}
+
+{% block content %}
+    <h1>Группы задач</h1>
+
+    <div id="tree"></div>
+
+{% endblock %}
+
+{% block js %}
+    <script src="/3rd/treejs-master/tree.js"></script>
+    <script>
+        
+        window.addEventListener('load', init);
+        
+        function init() {
+            fetch('{{ route("task-group.list") }}')
+                .then(response => response.json())
+                .then(json => { 
+                    const root = new TreeNode("Группы задач");
+                    
+                    for (var n of json) {
+                        // console.log(n.item);
+                        var suff1 = n.item.abbr ? " [" + n.item.abbr + "]" : "";
+                        var tn = new TreeNode(n.item.name + suff1, n);
+                        
+                        for (var c of n.children) {
+                            var suff2 = c.item.abbr ? " [" + c.item.abbr + "]" : "";
+                            var tnc = new TreeNode(c.item.name + suff2, c);
+                            
+                            tnc.on('select', function(node){
+                                // console.log(node.getOptions());
+                                document.location.href='/task-group/edit/' + node.getOptions().item.id;
+                            });
+
+                            tn.addChild(tnc);
+                        }
+                        
+                        root.addChild(tn);
+                    }
+                    
+                    var tree = new TreeView(root, "#tree", {
+                        leaf_icon: "<span>&#128927;</span>",
+                        parent_icon: "<span></span>",
+                        open_icon: "<span>&#9698;</span>",
+                        close_icon: "<span>&#9658;</span>"
+                    });
+                });
+        }
+        
+        //var root = new TreeNode("root");
+        /*n1 = new TreeNode("1");
+        n11 = new TreeNode("1.1");
+        n2 = new TreeNode("2");
+        n3 = new TreeNode("3");
+        n31 = new TreeNode("3.1");
+        n32 = new TreeNode("3.2");
+        n321 = new TreeNode("3.2.1");
+        n33 = new TreeNode("3.3");
+        root.addChild(n1);
+        root.addChild(n2);
+        root.addChild(n3);
+        n1.addChild(n11);
+        n3.addChild(n31);
+        n3.addChild(n32);
+        n3.addChild(n33);
+        //n3.setEnabled(false);
+        n32.addChild(n321);*/
+
+        /*var tree = new TreeView(root, "#tree", {
+            leaf_icon: "<span>&#128927;</span>",
+            parent_icon: "<span></span>",
+            // parent_icon: "<span>&#11200;</span>",
+            open_icon: "<span>&#9698;</span>",
+            close_icon: "<span>&#9658;</span>"
+        });
+
+        n321.on('select', function(node){
+            console.log("Selected: 3.2.1");
+        });*/
+
+    </script>
+{% endblock %}
+

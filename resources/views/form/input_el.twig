@@ -1,0 +1,8 @@
+        <input name="{{ elName }}" 
+               id="{{ elId | default(elName) }}" 
+               {% if autofocus %} autofocus{% endif %}
+               class="form-control{{ errors.has(elErrorName) ? ' is-invalid' : '' }}" 
+               value="{{ hasErrors ? old(elErrorName) : elValue }}" 
+               type="{{ elType | default('text') }}" 
+               max="{{ max | default(255) }}"
+               >

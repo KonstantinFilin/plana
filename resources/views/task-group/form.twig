@@ -1,0 +1,13 @@
+{{ csrf_field() }}
+
+{% include 'form/input' with {
+    elName: 'name',
+    elValue: taskGroup.name,
+    elLabel: 'Название'
+} %}
+
+{% include 'form/input' with {
+    elName: 'abbr',
+    elValue: taskGroup.abbr,
+    elLabel: 'Сокращение'
+} %}
