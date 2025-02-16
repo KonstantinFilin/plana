@@ -12,8 +12,8 @@
             <option value="">-= Не выбрано =-</option>
         {% for k,v in elValues %}
             {% set k = keyAttribute ? v[keyAttribute] : k  %}
-            {% set v = valueAttribute ? v[valueAttribute] : k  %}
-            <option value="{{ k }}"{% if k == elValue %}} selected{% endif %}>{{ v }}</option>
+            {% set v = valueAttribute ? v[valueAttribute] : v  %}
+            <option value="{{ k }}"{% if k == elValue %} selected{% endif %}>{{ v | raw }}</option>
         {% endfor %}
         </select>
         {% if errors.has(elErrorName) %}

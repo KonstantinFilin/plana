@@ -1,0 +1,45 @@
+{% extends "layout" %}
+
+{% block title %}Группа задач - редактирование{% endblock %}
+
+{% block content %}
+    <h1>Группа задач &laquo;{{ taskGroup.name }}&raquo; - редактирование</h1>
+
+    <p>
+      <a href="{{ route('task-group.delete', { taskGroup: taskGroup }) }}"  
+         class="btn btn-danger"
+         data-method="post"
+         data-token="{{ csrf_token() }}"
+         data-confirm="Удалить узел {{ taskGroup.name }}?"
+         >Удалить</a>
+    </p>
+
+    <form method='post'>
+        {% include 'task-group.form' %}
+
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <button type='submit' class='btn btn-primary'>Сохранить</button>
+            </div>
+        </div>
+
+    </form>
+
+    <br /><br />
+        
+    <h2>Добавить соседа</h2>
+        
+    <form method='post' action='{{ route('task-group.add') }}'>
+        {% include 'task-group.form' with { taskGroup: {} } %}
+        <input type="hidden" name="pid" value="{{ taskGroup.pid }}" />
+        <div class="row mb-3">
+            <label class="col-sm-2 col-form-label"></label>
+            <div class="col-sm-10">
+                <button type='submit' class='btn btn-primary'>Сохранить</button>
+            </div>
+        </div>
+
+    </form>
+
+{% endblock %}

@@ -95,17 +95,18 @@ class TreeService
             : 0;
     }
 
-    public function getTreeItem(int $id): array {
+    public function getTreeItem(int $id, int $level = 1): array {
         $children = [];
         $item = $this->getItemById($id);
         
         if ($this->hasChildren($id)) {
             foreach ($this->getChildren($id) as $child) {
-                $children[] = $this->getTreeItem($child->id);
+                $children[] = $this->getTreeItem($child->id, $level + 1);
             }
         }
         
         return [
+            'level' => $level,
             'item' => $item,
             'children' => $children
         ];

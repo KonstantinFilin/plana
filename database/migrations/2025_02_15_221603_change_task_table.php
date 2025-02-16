@@ -13,7 +13,8 @@ return new class extends Migration
     {
         Schema::table(TBL_TASK, function (Blueprint $table) {
             $table->tinyInteger('duration_plan')->unsigned()->default(30)->change();
-            $table->tinyInteger('duration_fact')->unsigned()->change();
+            $table->tinyInteger('duration_fact')->unsigned()->nullable()->change();
+            $table->date('dt_closed')->nullable()->change();
         });
     }
 

@@ -1,0 +1,80 @@
+{{ csrf_field() }}
+
+{% include 'form/select' with {
+    elName: 'group_id',
+    elValue: task.group_id,
+    elValues: groupList,
+    elLabel: 'Группа'
+} %}
+
+{% include 'form/input' with {
+    elName: 'short',
+    elValue: task.short,
+    elLabel: 'Суть'
+} %}
+
+{% include 'form/textarea' with {
+    elName: 'description',
+    elValue: task.description,
+    elLabel: 'Подробнее'
+} %}
+
+{% include 'form/radio' with {
+    elName: 'duration_plan',
+    elValue: task.duration_plan,
+    elValues: { 5: 5, 15:15, 30: 30, 60: 60, 90:90, 120: 120, 240: 240 },
+    elLabel: 'Длительность (план)'
+} %}
+
+{% include 'form/radio' with {
+    elName: 'duration_fact',
+    elValue: task.duration_fact,
+    elValues: { 5: 5, 15:15, 30: 30, 60: 60, 90:90, 120: 120, 240: 240 },
+    elLabel: 'Длительность (факт)'
+} %}
+
+{% include 'form/radio' with {
+    elName: 'priority',
+    elValue: task.priority,
+    elValues: {'A': 'A', 'B': 'B', 'C': 'C', 'Z': 'Z'},
+    elLabel: 'Приоритет'
+} %}
+
+{% include 'form/input' with {
+    elType: 'number',
+    max: 15000,
+    elName: 'sum_paid',
+    elValue: task.sum_paid,
+    elLabel: 'Сумма оплаченная'
+} %}
+
+{% include 'form/input' with {
+    elType: 'number',
+    max: 15000,
+    elName: 'sum_rest',
+    elValue: task.sum_rest,
+    elLabel: 'Сумма оставшаяся'
+} %}
+
+{% include 'form/input' with {
+    elType: 'date',
+    elName: 'plan_dt',
+    elValue: task.plan_dt,
+    elLabel: 'Плановая дата'
+} %}
+
+{% include 'form/input' with {
+    elType: 'time',
+    elName: 'plan_time',
+    elValue: task.plan_time,
+    elLabel: 'Плановое время'
+} %}
+
+
+{% include 'form/input' with {
+    elType: 'date',
+    elName: 'dt_closed',
+    elValue: task.dt_closed,
+    elLabel: 'Дата закрытия'
+} %}
+

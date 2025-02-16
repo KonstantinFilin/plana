@@ -3,11 +3,11 @@
 {% block title %}Главная страница{% endblock %}
 
 {% block content %}
-    <h1>Главная страница</h1>
-    
-    Период: {{ pv.selectedDt.format("d.m.Y") }}
-    <br />
-    dt: {{ pv.getTodayDt().format("d.m.Y") }}
+
+    <br /><br />
+    <div class="text-center">
+        <a href="{{ route('task.add') }}" class="btn btn-primary">Добавить задачу</a>
+    </div>
     
     <br /><br />
     

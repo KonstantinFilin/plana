@@ -22,8 +22,14 @@
     -- Edit list
     -- Delete list
     -- Add a child
-- add a task
++ add a task
 - add a short task
+- add a task list
+- unplanned tasks
+- planned tasks with time
+- planned tasks without time
+- closed tasks
+- day summary
 - edit a task
 - delete a task
 - plan for a task
