@@ -54,7 +54,11 @@
     <tr>
         <th></th>
     {% for d in pv.getDtList %}
-        <td>{% include 'day_plan3' %}</td>
+        <td>
+            {% if taskListPlanned[d.format("Y-m-d")] is not empty %}
+                {% include 'day_plan3' with { tl: taskListPlanned[d.format("Y-m-d")] } %}
+            {% endif %}
+        </td>
     {% endfor %}
         <th></th>
     </tr>

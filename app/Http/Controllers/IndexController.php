@@ -17,9 +17,11 @@ class IndexController extends Controller
         }
         
         ksort($taskListGrouped);
-
+        $taskListPlanned = $pv->getTaskListPlanned();
+        
         return view('index', [
             'pv' => $pv,
+            'taskListPlanned' => $taskListPlanned,
             'groupList' => \App\Models\TaskGroup::getAsSelectList(),
             'taskListGrouped' => $taskListGrouped
         ]);
@@ -30,9 +32,11 @@ class IndexController extends Controller
         $dtObj = \DateTime::createFromFormat("Ymd", $dt);
         $pv = new \App\Models\PlannerView($period, $dtObj);
         $tpl = $period == 30 ? 'planner30' : 'planner';
+        $taskListPlanned = $pv->getTaskListPlanned();
         
         return view($tpl, [
-            'pv' => $pv
+            'pv' => $pv,
+            'taskListPlanned' => $taskListPlanned
         ]);
     }
 }

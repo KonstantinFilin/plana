@@ -27,9 +27,9 @@
 + add a task list
 + unplanned tasks
 - planned tasks with time
-- planned tasks without time
-- closed tasks
-- day summary
++ planned tasks without time
++ closed tasks
++ day summary
 + edit a task
 + delete a task
 + plan dt for a task

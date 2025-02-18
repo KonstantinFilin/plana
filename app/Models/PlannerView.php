@@ -74,6 +74,19 @@ class PlannerView {
         return $this->getDtList3();
     }
     
+    public function getTaskListPlanned(): \Illuminate\Support\Collection {
+        $dtListObj = $this->getDtList();
+        $dtList = [];
+        
+        foreach ($dtListObj as $do) {
+            $dtList[] = $do->format('Y-m-d');
+        }
+        
+        $taskList = Task::whereIn("plan_dt", $dtList)->get();
+        $items = collect($taskList)->groupBy("plan_dt");
+        return $items;
+    }
+    
     public function getPeriodDuration(): int {
         return $this->periodDuration;
     }

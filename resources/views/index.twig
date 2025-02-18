@@ -5,13 +5,6 @@
 {% block container %}container-fluid{% endblock %}
 
 {% block content %}
-
-    <br /><br />
-    <div class="text-center">
-        <a href="{{ route('task.add') }}" class="btn btn-primary">Добавить задачу</a>
-    </div>
-    
-    <br /><br />
     
     <div class="row">
         <div id="planner" class="col-10">
@@ -33,6 +26,7 @@
 
                     <br />
                     <button type="submit" class="btn btn-primary">Добавить</button>
+                    <a href="{{ route('task.add') }}" class="btn btn-primary">+</a>
                 </div>
             </form>
             
@@ -42,70 +36,7 @@
                 
                 <ul style='list-style-type: none;' class='day'>
                 {% for t in tl %}                
-                    <li class="task task-priority-{{ t.priority | lower }}">
-                        <div>{{ t.short }}</div>
-                        <div class="task-footer" style="display: none;">
-                            <hr />
-                            &#9999; <a href="{{ route('task.edit', { task: t }) }}">Редактировать</a>
-                            &#128465; <a href="{{ route('task.delete', { task: t }) }}"
-                                         class="text-danger"
-                                         data-method="post"
-                                         data-confirm="Удалить задачу #{{ t.id }}  '{{ t.short }}'?"
-                                         data-token='{{ csrf_token() }}'
-                                         >Удалить</a>
-                                         &#128197; 
-                                         <a href='{{ route("task.plan-dt", { task: t, dt: pv.getDtList[0].format('Ymd') }) }}'
-                                            data-method='post'
-                                            data-token='{{ csrf_token() }}'
-                                            >Сегодня</a>
-                                         <a href='{{ route("task.plan-dt", { task: t, dt: pv.getDtList[1].format('Ymd') }) }}'
-                                            data-method='post'
-                                            data-token='{{ csrf_token() }}'
-                                            > +1 </a>
-                                         <a href='{{ route("task.plan-dt", { task: t, dt: pv.getDtList[2].format('Ymd') }) }}'
-                                            data-method='post'
-                                            data-token='{{ csrf_token() }}'
-                                            > +2 </a>
-                                            <br />
-                                         ✅ 
-                                         <a href='{{ route("task.close", { task: t, dt: pv.getDtList[0].format('Ymd') }) }}'
-                                            data-method='post'
-                                            data-token='{{ csrf_token() }}'
-                                            >Сегодня</a>
-                                         <a href='{{ route("task.close", { task: t, dt: pv.getYesterdayDt.format('Ymd') }) }}'
-                                            data-method='post'
-                                            data-token='{{ csrf_token() }}'
-                                            > Вчера </a>
-                                            <br />
-                                        &#10071; 
-                                        {% for p in ['A', 'B', 'C', 'Z'] %}
-                                            {% if p == t.priority %}
-                                                <span style='font-weight: bold; font-size: larger;'>{{ p }}</span>
-                                            {% else %}
-                                                <a href='{{ route("task.set-priority", { task: t, priority: p }) }}'
-                                                   data-method='post'
-                                                   data-token='{{ csrf_token() }}'
-                                                   > {{ p }} </a>
-                                                
-                                            {% endif %}
-                                            &nbsp;&nbsp;
-                                        {% endfor %}
-                                            <br />
-                                        &#128336;
-                                        {% for d in [5, 15, 30, 60, 90, 120] %}
-                                            {% if d == t.duration_plan %}
-                                                <span style='font-weight: bold; font-size: larger;'>{{ d }}</span>
-                                            {% else %}
-                                                <a href='{{ route("task.set-duration", { task: t, duration: d }) }}'
-                                                   data-method='post'
-                                                   data-token='{{ csrf_token() }}'
-                                                   > {{ d }} </a>
-                                                
-                                            {% endif %}
-                                            &nbsp;&nbsp;
-                                        {% endfor %}
-                        </div>
-                    </li>
+                    {% include 'task.item' %}
                 {% endfor %}
                 </ul>
             {% endfor %}
