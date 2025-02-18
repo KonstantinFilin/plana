@@ -40,6 +40,24 @@ class TaskController extends Controller
         return redirect('/');
     }
     
+    public function editGet(Task $task) {
+        
+        return view('task.edit', [
+            'task' => $task,
+            'groupList' => \App\Models\TaskGroup::getAsSelectList()
+        ]);
+    }
+    
+    public function editPost(TaskRequest $request, Task $task) {
+        $this->fillAndSave($request, $task);
+        return redirect('/');
+    }
+    
+    public function delete(Task $task) {
+        $task->delete();
+        return redirect('/');
+    }
+    
     private function fillAndSave(TaskRequest $request, Task $task) {
         $task->group_id = $request->post('group_id');
         $task->short = $request->post('short');

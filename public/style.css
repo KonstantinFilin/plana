@@ -13,6 +13,11 @@ ul li.task {
     padding:3px;
 }
 
+.task-footer a {
+    text-decoration: none;
+    border-bottom: 1px #00c dotted;
+}
+
 .task-priority-a {
     background-color: #fdd;
 }

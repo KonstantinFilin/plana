@@ -30,8 +30,8 @@
 - planned tasks without time
 - closed tasks
 - day summary
-- edit a task
-- delete a task
++ edit a task
++ delete a task
 - plan for a task
 - closing a task
 - change priority

@@ -46,8 +46,13 @@
                         <div>{{ t.short }}</div>
                         <div class="task-footer" style="display: none;">
                             <hr />
-                            &#9999; Редактировать
-                            &#128465; Удалить
+                            &#9999; <a href="{{ route('task.edit', { task: t }) }}">Редактировать</a>
+                            &#128465; <a href="{{ route('task.delete', { task: t }) }}"
+                                         class="text-danger"
+                                         data-method="post"
+                                         data-confirm="Удалить задачу #{{ t.id }}  '{{ t.short }}'?"
+                                         data-token='{{ csrf_token() }}'
+                                         >Удалить</a>
                         </div>
                     </li>
                 {% endfor %}
