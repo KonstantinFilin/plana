@@ -31,4 +31,5 @@ Route::post('/task/add-batch', [TaskController::class, 'addBatch'])->name("task.
 Route::get('/task/edit/{task}', [TaskController::class, 'editGet'])->name("task.edit");
 Route::post('/task/edit/{task}', [TaskController::class, 'editPost'])->name("task.edit");
 Route::post('/task/delete/{task}', [TaskController::class, 'delete'])->name("task.delete");
+Route::post('/task/plan-dt/{task}/{dt}', [TaskController::class, 'planDt'])->name("task.plan-dt")->where('dt', '\d{8}');
 

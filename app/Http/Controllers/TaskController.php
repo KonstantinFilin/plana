@@ -58,6 +58,13 @@ class TaskController extends Controller
         return redirect('/');
     }
     
+    public function planDt(Task $task, int $dt) {
+        $task->plan_dt = \DateTime::createFromFormat("Ymd", $dt);
+        $task->save();
+        
+        return redirect('/');
+    }
+    
     private function fillAndSave(TaskRequest $request, Task $task) {
         $task->group_id = $request->post('group_id');
         $task->short = $request->post('short');
