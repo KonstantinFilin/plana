@@ -2,6 +2,8 @@
 
 {% block title %}Главная страница{% endblock %}
 
+{% block container %}container-fluid{% endblock %}
+
 {% block content %}
 
     <br /><br />
@@ -11,8 +13,31 @@
     
     <br /><br />
     
-    <div id="planner">
-        {% include 'planner' %}
+    <div class="row">
+        <div id="planner" class="col-9">
+            {% include 'planner' %}
+        </div>        
+        <div class="col">
+            
+            <form action="{{ route('task.add-batch') }}" method="post" class="align-items-center">
+                {{ csrf_field() }}
+                <div class="text-center">
+                    <select name="group_id" class="form-select">
+                        <option value="">-= Не выбрано =-</option>
+                    {% for k,v in groupList %}
+                        <option value="{{ k }}">{{ v | raw }}</option>
+                    {% endfor %}
+                    </select>
+                    
+                    <textarea name="task-list" class="form-control"></textarea>
+
+                    <br />
+                    <button type="submit" class="btn btn-primary">Добавить</button>
+                </div>
+            </form>
+            
+        </div>
+
     </div>
     
     <br /><br />    

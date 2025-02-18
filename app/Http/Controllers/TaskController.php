@@ -26,13 +26,27 @@ class TaskController extends Controller
         return redirect('/');
     }
     
+    public function addBatch() {
+        $request = request();
+        $taskList = explode("\n", $request->post('task-list'));
+        
+        foreach ($taskList as $short) {
+            $task = new Task();
+            $task->group_id = $request->post('group_id');
+            $task->short = $short;
+            $task->save();
+        }
+
+        return redirect('/');
+    }
+    
     private function fillAndSave(TaskRequest $request, Task $task) {
         $task->group_id = $request->post('group_id');
         $task->short = $request->post('short');
         $task->description = $request->post('description');
         $task->duration_plan = $request->post('duration_plan', 60);
         $task->duration_fact = $request->post('duration_fact');
-        $task->priority = $request->post('priority');
+        $task->priority = $request->post('priority', Task::PRIORITY_B);
         $task->sum_paid = $request->post('sum_paid', 0);
         $task->sum_rest = $request->post('sum_rest', 0);
         $task->plan_dt = $request->post('plan_dt');

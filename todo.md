@@ -23,8 +23,8 @@
     -- Delete list
     -- Add a child
 + add a task
-- add a short task
-- add a task list
++ add a short task
++ add a task list
 - unplanned tasks
 - planned tasks with time
 - planned tasks without time

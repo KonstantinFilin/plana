@@ -10,7 +10,8 @@ class IndexController extends Controller
         $pv = new \App\Models\PlannerView(3);
 
         return view('index', [
-            'pv' => $pv
+            'pv' => $pv,
+            'groupList' => \App\Models\TaskGroup::getAsSelectList()
         ]);
     }
 

@@ -27,4 +27,5 @@ Route::post('/task-group/delete/{taskGroup}', [TaskGroupController::class, 'dele
 
 Route::get('/task/add', [TaskController::class, 'addGet'])->name("task.add");
 Route::post('/task/add', [TaskController::class, 'addPost'])->name("task.add");
+Route::post('/task/add-batch', [TaskController::class, 'addBatch'])->name("task.add-batch");
 
