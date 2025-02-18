@@ -21,4 +21,8 @@ class Task extends Model
             self::PRIORITY_Z
         ];
     }
+    
+    public function group() {
+        return $this->hasOne(TaskGroup::class, 'id', 'group_id');
+    }
 }

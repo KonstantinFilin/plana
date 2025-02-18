@@ -14,7 +14,7 @@
     <br /><br />
     
     <div class="row">
-        <div id="planner" class="col-9">
+        <div id="planner" class="col-10">
             {% include 'planner' %}
         </div>        
         <div class="col">
@@ -36,6 +36,23 @@
                 </div>
             </form>
             
+                    
+            {% for g, tl in taskListGrouped %}
+                <h2>{{ g }}</h2>
+                
+                <ul style='list-style-type: none;' class='day'>
+                {% for t in tl %}                
+                    <li class="task task-priority-{{ t.priority | lower }}">
+                        <div>{{ t.short }}</div>
+                        <div class="task-footer" style="display: none;">
+                            <hr />
+                            &#9999; Редактировать
+                            &#128465; Удалить
+                        </div>
+                    </li>
+                {% endfor %}
+                </ul>
+            {% endfor %}
         </div>
 
     </div>

@@ -3,3 +3,28 @@ ul.day li {
     padding: 3px;
     font-weight: normal;
 }
+
+ul li.task {
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.task-footer {
+    padding:3px;
+}
+
+.task-priority-a {
+    background-color: #fdd;
+}
+
+.task-priority-b {
+    background-color: #fed;
+}
+
+.task-priority-c {
+    background-color: #dfd;
+}
+
+.task-priority-z {
+    background-color: #ddd;
+}
