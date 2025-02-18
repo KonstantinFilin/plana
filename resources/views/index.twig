@@ -76,6 +76,34 @@
                                             data-method='post'
                                             data-token='{{ csrf_token() }}'
                                             > Вчера </a>
+                                            <br />
+                                        &#10071; 
+                                        {% for p in ['A', 'B', 'C', 'Z'] %}
+                                            {% if p == t.priority %}
+                                                <span style='font-weight: bold; font-size: larger;'>{{ p }}</span>
+                                            {% else %}
+                                                <a href='{{ route("task.set-priority", { task: t, priority: p }) }}'
+                                                   data-method='post'
+                                                   data-token='{{ csrf_token() }}'
+                                                   > {{ p }} </a>
+                                                
+                                            {% endif %}
+                                            &nbsp;&nbsp;
+                                        {% endfor %}
+                                            <br />
+                                        &#128336;
+                                        {% for d in [5, 15, 30, 60, 90, 120] %}
+                                            {% if d == t.duration_plan %}
+                                                <span style='font-weight: bold; font-size: larger;'>{{ d }}</span>
+                                            {% else %}
+                                                <a href='{{ route("task.set-duration", { task: t, duration: d }) }}'
+                                                   data-method='post'
+                                                   data-token='{{ csrf_token() }}'
+                                                   > {{ d }} </a>
+                                                
+                                            {% endif %}
+                                            &nbsp;&nbsp;
+                                        {% endfor %}
                         </div>
                     </li>
                 {% endfor %}

@@ -35,8 +35,8 @@
 + plan dt for a task
 - plan time for a task
 + closing a task
-- change priority
-- change duration
++ change priority
++ change duration
 
 - weekly task
 - monthly task

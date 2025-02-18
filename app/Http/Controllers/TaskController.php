@@ -72,6 +72,20 @@ class TaskController extends Controller
         return redirect('/');
     }
     
+    public function setDuration(Task $task, int $duration) {
+        $task->duration_plan = $duration;
+        $task->save();
+        
+        return redirect('/');
+    }
+    
+    public function setPriority(Task $task, string $priority) {
+        $task->priority = $priority;
+        $task->save();
+        
+        return redirect('/');
+    }
+    
     private function fillAndSave(TaskRequest $request, Task $task) {
         $task->group_id = $request->post('group_id');
         $task->short = $request->post('short');

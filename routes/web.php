@@ -33,4 +33,8 @@ Route::post('/task/edit/{task}', [TaskController::class, 'editPost'])->name("tas
 Route::post('/task/delete/{task}', [TaskController::class, 'delete'])->name("task.delete");
 Route::post('/task/plan-dt/{task}/{dt}', [TaskController::class, 'planDt'])->name("task.plan-dt")->where('dt', '\d{8}');
 Route::post('/task/close/{task}/{dt}', [TaskController::class, 'close'])->name("task.close")->where('dt', '\d{8}');
+Route::post('/task/set-priority/{task}/{priority}', [TaskController::class, 'setPriority'])->name("task.set-priority")
+        ->where('priority', 'A|B|C|Z');
+Route::post('/task/set-duration/{task}/{duration}', [TaskController::class, 'setDuration'])->name("task.set-duration")
+        ->where('duration', '\d{1,3}');
 
