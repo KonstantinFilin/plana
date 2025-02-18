@@ -21,10 +21,19 @@ class PlannerView {
      */
     private $todayDt;
     
+    /**
+     * 
+     * @var \DateTime
+     */
+    private $yesterdayDt;
+    
     public function __construct(int $periodDuration, ?\DateTime $startDt = null) {
         $this->periodDuration = $periodDuration;
         $this->selectedDt = $startDt ?? new \DateTime();
         $this->todayDt = new \DateTime();
+        $p = new \DateInterval("P1D");
+        
+        $this->yesterdayDt = (clone $this->todayDt)->sub($p);
     }
 
     private function getDtList30(): array {
@@ -77,6 +86,10 @@ class PlannerView {
         return $this->todayDt;
     }
     
+    public function getYesterdayDt(): \DateTime {
+        return $this->yesterdayDt;
+    }
+        
     public function getPrevDt(): \DateTime {
         return (clone $this->selectedDt)->sub(
             new \DateInterval("P" . $this->periodDuration . "D")

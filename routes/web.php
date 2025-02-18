@@ -32,4 +32,5 @@ Route::get('/task/edit/{task}', [TaskController::class, 'editGet'])->name("task.
 Route::post('/task/edit/{task}', [TaskController::class, 'editPost'])->name("task.edit");
 Route::post('/task/delete/{task}', [TaskController::class, 'delete'])->name("task.delete");
 Route::post('/task/plan-dt/{task}/{dt}', [TaskController::class, 'planDt'])->name("task.plan-dt")->where('dt', '\d{8}');
+Route::post('/task/close/{task}/{dt}', [TaskController::class, 'close'])->name("task.close")->where('dt', '\d{8}');
 

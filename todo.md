@@ -34,7 +34,7 @@
 + delete a task
 + plan dt for a task
 - plan time for a task
-- closing a task
++ closing a task
 - change priority
 - change duration
 

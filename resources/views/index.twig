@@ -66,6 +66,16 @@
                                             data-method='post'
                                             data-token='{{ csrf_token() }}'
                                             > +2 </a>
+                                            <br />
+                                         ✅ 
+                                         <a href='{{ route("task.close", { task: t, dt: pv.getDtList[0].format('Ymd') }) }}'
+                                            data-method='post'
+                                            data-token='{{ csrf_token() }}'
+                                            >Сегодня</a>
+                                         <a href='{{ route("task.close", { task: t, dt: pv.getYesterdayDt.format('Ymd') }) }}'
+                                            data-method='post'
+                                            data-token='{{ csrf_token() }}'
+                                            > Вчера </a>
                         </div>
                     </li>
                 {% endfor %}
