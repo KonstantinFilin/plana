@@ -26,7 +26,7 @@
 + add a short task
 + add a task list
 + unplanned tasks
-- planned tasks with time
++ planned tasks with time
 + planned tasks without time
 + closed tasks
 + day summary

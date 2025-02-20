@@ -4,11 +4,19 @@
                             [{{ t.duration_plan }}]
                             
                             {% if t.dt_closed %}
-                                <span style='text-decoration: line-through'>{{ t.short }}</span>
+                                <span style='text-decoration: line-through'>
+                                    {% if t.groupName and (showGroup | default(1)) %}
+                                    {{ t.groupName }} - 
+                                    {% endif %}
+                                    {{ t.short }}
+                                </span>
                             {% else %}
+                                
+                                {% if t.groupName and (showGroup | default(1)) %}
+                                {{ t.groupName }} - 
+                                {% endif %}
                                 {{ t.short }}
                             {% endif %}
-                            
                         </div>
                         <div class="task-footer" style="display: none;">
                             <hr />

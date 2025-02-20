@@ -1,3 +1,7 @@
+ul.day {
+    list-style-type: none;
+}
+
 ul.day li {
     margin: 5px;
     padding: 3px;

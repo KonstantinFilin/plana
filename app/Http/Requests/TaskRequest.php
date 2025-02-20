@@ -33,7 +33,7 @@ class TaskRequest extends FormRequest
             'sum_paid' => 'nullable|integer|between:0,10000',
             'sum_rest' => 'nullable|integer|between:0,10000',
             'plan_dt' => 'nullable|date_format:Y-m-d',
-            'plan_time' => 'nullable|date_format:H:i',
+            'plan_time' => 'nullable|date_format:H:i:s',
             'dt_closed' => 'nullable|date_format:Y-m-d',
         ];
     }

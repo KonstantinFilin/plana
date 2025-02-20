@@ -36,7 +36,7 @@
                 
                 <ul style='list-style-type: none;' class='day'>
                 {% for t in tl %}                
-                    {% include 'task.item' %}
+                    {% include 'task.item' with { showGroup: 0 } %}
                 {% endfor %}
                 </ul>
             {% endfor %}

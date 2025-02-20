@@ -55,9 +55,7 @@
         <th></th>
     {% for d in pv.getDtList %}
         <td>
-            {% if taskListPlanned[d.format("Y-m-d")] is not empty %}
-                {% include 'day_plan3' with { tl: taskListPlanned[d.format("Y-m-d")] } %}
-            {% endif %}
+            {% include 'day_plan3' with { tl: taskListPlanned[d.format("Y-m-d")] } %}
         </td>
     {% endfor %}
         <th></th>
@@ -68,7 +66,14 @@
         {% for d in pv.getDtList %}
             <td
                {% if pv.getTodayDt().format("H") == h %}  class="table-primary"{% endif %}         
-            >                                                                                                  
+            >               
+                {% if taskListPlanned[d.format("Y-m-d")][h] is not empty %}
+                    <ul class="day">
+                {% for t in taskListPlanned[d.format("Y-m-d")][h] %}
+                    {% include 'task.item' %}
+                {% endfor %}
+                    </ul>
+                {% endif %}
             </td>
         {% endfor %}
         <th></th>

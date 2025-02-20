@@ -2,21 +2,23 @@
 {% set rest = 0 %}
 {% set sum = 0 %}
 
-{% for t in tl %}
-    {% if t.dt_closed %}
-        {% set done = done + t.duration_plan %}
-        {% set sum = sum + t.sum_paid + t.sum_rest %}
-    {% else %}
-        {% set rest = rest + t.duration_plan %}
-    {% endif %}
+{% for tt in tl %}
+    {% for t in tt %}
+        {% if t.dt_closed %}
+            {% set done = done + t.duration_plan %}
+            {% set sum = sum + t.sum_paid + t.sum_rest %}
+        {% else %}
+            {% set rest = rest + t.duration_plan %}
+        {% endif %}
+    {% endfor %}
 {% endfor %}
 
-<p>
-    Осталось: <b>{{ rest }}</b>
-<br />
-Сделано: <b>{{ done }}</b>
-<br />
-Сумма: <b>{{ sum }}</b></p>
+<p class="text-center">
+    <span class="text-danger">{{ rest }}</span>
+    /
+    <span class="text-success">{{ done }}</span>
+    /
+    <span class="text-info">{{ sum }}</span>
 
 <ul style='list-style-type: none;' class='day'>
 {#    <li style='background-color: #fdd;'>&#9744; Задача 1</li>
@@ -24,9 +26,12 @@
     <li style='background-color: #dfd;'>&#9745;︎ Задача 3</li>
     {# <li style='background-color: #dfd;'>&#128504; Задача 3</li>#}
   {#  <li style='background-color: #fdd;'>&#9744;︎ Задача 4</li> #}
+    
   
-    {% for t in tl %}
-        {% include 'task.item' %}
+    {% for t in tl[""] %}
+        {% if t.plan_time is empty %}
+            {% include 'task.item' %}
+        {% endif %}
     {% endfor %}
 </ul>
 

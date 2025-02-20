@@ -22,6 +22,10 @@ class Task extends Model
         ];
     }
     
+    public function getGroupNameAttribute() {
+        return $this->group->abbr ?? $this->group->name ?? "";
+    }
+    
     public function group() {
         return $this->hasOne(TaskGroup::class, 'id', 'group_id');
     }

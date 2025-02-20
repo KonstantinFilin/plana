@@ -74,7 +74,7 @@ class PlannerView {
         return $this->getDtList3();
     }
     
-    public function getTaskListPlanned(): \Illuminate\Support\Collection {
+    public function getTaskListPlanned(): array {
         $dtListObj = $this->getDtList();
         $dtList = [];
         
@@ -83,7 +83,12 @@ class PlannerView {
         }
         
         $taskList = Task::whereIn("plan_dt", $dtList)->get();
-        $items = collect($taskList)->groupBy("plan_dt");
+        $items = []; // collect($taskList)->groupBy("plan_dt");
+        
+        foreach ($taskList as $t) {
+            $items[$t->plan_dt][substr($t->plan_time, 0, 2)][] = $t;
+        }
+        
         return $items;
     }
     
