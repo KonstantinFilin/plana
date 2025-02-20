@@ -27,6 +27,7 @@
                                          data-confirm="Удалить задачу #{{ t.id }}  '{{ t.short }}'?"
                                          data-token='{{ csrf_token() }}'
                                          >Удалить</a>
+                                         <br />
                                          &#128197; 
                                          <a href='{{ route("task.plan-dt", { task: t, dt: pv.getDtList[0].format('Ymd') }) }}'
                                             data-method='post'
