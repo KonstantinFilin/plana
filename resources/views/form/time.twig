@@ -1,0 +1,36 @@
+{% set hasErrors = errors.all() | length > 0 %}
+{% set elErrorName = elName | replace({ '[': '.', ']': ''}) %}
+
+{% if hasErrors %}
+{% set elValue = old(elName) %}
+{% endif %}
+
+<div class="row mb-3">
+    <label for="{{ elName }}" class="col-sm-2 col-form-label">{{ elLabel }}</label>
+    <div class="col-sm-10">
+        <select name="{{ elName }}_h" class="form-select{{ errors.has(elErrorName ~ "_h") ? ' is-invalid' : '' }}" style="display: inline; width: 200px;">
+            <option value="">-= Не выбрано =-</option>
+        {% for k,v in 0..23 %}
+            <option value="{{ k }}"{% if k == elValueH %} selected{% endif %}>{{ k > 9 ? k : "0" ~ k }}</option>
+        {% endfor %}
+        </select>
+        :
+        <select name="{{ elName }}_m" class="form-select{{ errors.has(elErrorName ~ "_m") ? ' is-invalid' : '' }}" style="display: inline; width: 200px;">
+            <option value="">-= Не выбрано =-</option>
+        {% for k,v in [ "00", "15", "30", "45" ] %}
+            <option value="{{ v }}"{% if v == elValueM %} selected{% endif %}>{{ v }}</option>
+        {% endfor %}
+        </select>
+        {{ elValueM }}
+        {% if errors.has(elErrorName ~ "_h") %}
+         <div class="text-danger">
+            {{ errors.first(elErrorName ~ "_h") }}
+        </div>
+        {% endif %}
+        {% if errors.has(elErrorName ~ "_m") %}
+         <div class="text-danger">
+            {{ errors.first(elErrorName ~ "_m") }}
+        </div>
+        {% endif %}
+    </div>
+</div>

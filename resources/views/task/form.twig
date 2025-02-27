@@ -63,10 +63,10 @@
     elLabel: 'Плановая дата'
 } %}
 
-{% include 'form/input' with {
-    elType: 'time',
+{% include 'form/time' with {
     elName: 'plan_time',
-    elValue: task.plan_time,
+    elValueH: task.plan_time | slice(0, 2),
+    elValueM: task.plan_time | slice(3, 2),
     elLabel: 'Плановое время'
 } %}
 

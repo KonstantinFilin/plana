@@ -87,6 +87,13 @@ class TaskController extends Controller
     }
     
     private function fillAndSave(TaskRequest $request, Task $task) {
+        
+        $t = null;
+        
+        if ($request->post('plan_time_h') && $request->post('plan_time_m')) {
+            $t = $request->post('plan_time_h') . ":" . $request->post('plan_time_m');
+        }
+        
         $task->group_id = $request->post('group_id');
         $task->short = $request->post('short');
         $task->description = $request->post('description');
@@ -96,7 +103,7 @@ class TaskController extends Controller
         $task->sum_paid = $request->post('sum_paid', 0);
         $task->sum_rest = $request->post('sum_rest', 0);
         $task->plan_dt = $request->post('plan_dt');
-        $task->plan_time = $request->post('plan_time');
+        $task->plan_time = $t;
         $task->dt_closed = $request->post('dt_closed');
         $task->save();
     }
