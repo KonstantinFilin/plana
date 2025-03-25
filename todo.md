@@ -34,7 +34,7 @@
 + delete a task
 + plan dt for a task
 + plan time for a task
-- plan time for a task (DnD)
++ plan time for a task (DnD)
 + closing a task
 + change priority
 + change duration
@@ -57,7 +57,3 @@
     -- fact
 
 # Shopping list
-
-# 
-
-

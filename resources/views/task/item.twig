@@ -1,4 +1,4 @@
-                    <li class="task task-priority-{{ t.priority | lower }}">
+                    <li class="task task-priority-{{ t.priority | lower }}" draggable="true" data-id="{{ t.id }}">
                         <div>
                             {% if t.dt_closed %}&#9745;{% else %}&#9744;{% endif %}
                             [{{ t.duration_plan }}]

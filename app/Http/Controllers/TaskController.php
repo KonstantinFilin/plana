@@ -65,6 +65,15 @@ class TaskController extends Controller
         return redirect('/');
     }
     
+    
+    public function planDtH(Task $task, int $dt, int $h) {
+        $task->plan_dt = \DateTime::createFromFormat("Ymd", $dt);
+        $task->plan_time = $h . ":00:00";
+        $task->save();
+        
+        return "Ok";
+    }
+    
     public function close(Task $task, int $dt) {
         $task->dt_closed = \DateTime::createFromFormat("Ymd", $dt);
         $task->save();

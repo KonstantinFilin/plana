@@ -52,7 +52,66 @@
     <script>
         window.addEventListener('load', function () {
             runPlannerControl();
+            bindTaskDnD();
         });
+        
+        function bindTaskDnD() {
+            
+            let dragged = null;
+            const ellist = document.getElementsByClassName("task");
+            
+            for (let e of ellist) {
+                e.addEventListener("dragstart", function (e) {
+                     dragged = event.target;
+                });
+            }            
+
+            const ellist2 = document.getElementsByClassName("day-hour");
+            for (let e of ellist2) {
+                
+                e.addEventListener("dragenter", (event) => {
+                    event.target.classList.add("day-hour-active");
+                    event.preventDefault();
+                });
+
+                e.addEventListener("dragleave", (event) => {
+                    event.target.classList.remove("day-hour-active");
+                    event.preventDefault();
+                });
+
+                e.addEventListener("dragover", (event) => {
+                    event.preventDefault();
+                });
+                
+                e.addEventListener("drop", function (event) {
+                    event.preventDefault();
+                    event.target.classList.remove("day-hour-active");
+                    
+                    ulel = this.querySelector("ul.day");
+                    
+                    if (!ulel) {
+                        ulel = document.createElement("ul");
+                        this.appendChild(ulel);
+                    }
+                    
+                    dragged.parentNode.removeChild(dragged);                    
+                    ulel.appendChild(dragged);
+                    
+                    const url = "/task/plan-dth/" + dragged.getAttribute("data-id") + "/" + this.getAttribute('data-dt') + "/" + + this.getAttribute('data-hour');
+                    
+                    fetch(url, { 
+                        method: "POST",
+                        headers: new Headers({
+                            'Content-Type': 'application/x-www-form-urlencoded', // <-- Specifying the Content-Type
+                        }),
+                        body: "_token=" + '{{ csrf_token() }}' 
+                        }).then(response => {
+                            
+                        });
+
+                });
+            }            
+        }
         
         function runPlannerControl() {
             const ellist = document.getElementsByClassName("planner-control");
