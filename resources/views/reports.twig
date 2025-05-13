@@ -4,4 +4,22 @@
 
 {% block content %}
     <h1>Отчёты</h1>
+    
+    <div id="cal"></div>
+{% endblock %}
+
+{% block js %}
+    <script>
+        window.addEventListener('load', init);
+        
+        function init() {
+            const target = document.getElementById('cal');
+            fetch('{{ route("reports-cal") }}')
+            .then(response => response.text())
+            .then(t => { 
+                target.innerHTML = t; 
+            });
+
+        }
+    </script>
 {% endblock %}

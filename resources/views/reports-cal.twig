@@ -1,0 +1,60 @@
+    <table class="table table-condensed">
+   {# <tr>
+        <th class="text-center">
+            <button type="button" class="btn btn-outline-secondary planner-control"
+                    data-period='' data-dt="">
+                <img src="/i/arrow-left.svg" width="50" height="50" />
+            </button>
+        </th>
+        <th colspan="{{ pv.getDtList | length }}" class="text-center">
+
+        </th>
+        <th class="text-center">
+            <button type="button" class="btn btn-outline-secondary planner-control"
+                    data-period='{{ pv.periodDuration }}' data-dt="{{ pv.getNextDt.format("Ymd") }}">
+                <img src="/i/arrow-right.svg" width="50" height="50" />
+            </button>
+        </th>
+    </tr>      #}
+    <tr>
+        <th style="border: none;"></th>
+        <th class="text-center" colspan="7"></th>
+        <th style="border: none;"></th>
+    </tr>
+    <tr>
+        <th style="border: none;"></th>
+        {% for i in 1..7 %}
+        <th class="text-center">{{ i | weekdaynum2rus }}</th>
+        {% endfor %}
+        <th style="border: none;"></th>
+    </tr>
+    <tr>
+        <th style="border: none;"></th>
+    {% for d in dtList %}
+        
+        {% if loop.index == 1 %}
+            {% for dd in 1..d.format("N") - 1 %}
+                <td></td>
+            {% endfor %}
+        {% endif %}
+    
+        <td
+            {% if d.format("Ymd") == ""|date("Ymd")  %}class="table-primary"{% endif %}
+            >{{ d.format("d") }}</td>
+        
+        {% if d.format("N") == 7 %}
+        <th style="border: none;"></th>
+        </tr><tr>
+        <th style="border: none;"></th>
+        {% endif %}
+        
+        {% if loop.last %}
+            {% for dd in 1.. 7 - d.format("N") %}
+                <td></td>
+            {% endfor %}
+            <td style="border: none;"></td>
+        {% endif %}
+
+    {% endfor %}
+    </tr>
+    </table>

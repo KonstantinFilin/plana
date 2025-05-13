@@ -13,12 +13,13 @@
     {% endfor %}
 {% endfor %}
 
-<p class="text-center" title="Осталось / Сделано / Заработано">
-    <span class="text-danger">{{ rest }}</span>
-    /
+<p class="text-center" title="Сделано / Осталось / Заработано">
     <span class="text-success">{{ done }}</span>
     /
-    <span class="text-primary">{{ sum }}</span>
+    <span class="text-danger">{{ rest }}</span>
+    <br />
+    <span class="text-primary">{{ sum }}</span> ₽  
+</p>
 
 <ul style='list-style-type: none;' class='day'>
 {#    <li style='background-color: #fdd;'>&#9744; Задача 1</li>

@@ -15,6 +15,15 @@ Route::get('/reports', function () {
     return view('reports');
 })->name("reports");
 
+Route::get('/reports-cal', function () {
+    $dtListService = new \App\Services\MonthGeneratorService(new \DateTime());
+    $dtList = $dtListService->run();
+    
+    return view('reports-cal', [
+        'dtList' => $dtList
+    ]);
+})->name("reports-cal");
+
 Route::get('/task-group', function () {
     return view('task-group');
 })->name("task-group");
