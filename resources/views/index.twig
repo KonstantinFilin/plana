@@ -119,7 +119,7 @@
                 e.onclick = function () {
                     const target = document.getElementById('planner');
                     target.innerHTML = '...';
-                    const url = "/schedule/" + this.getAttribute('data-dt') + "/" + + this.getAttribute('data-period');
+                    const url = "/schedule/" + this.getAttribute('data-dt') + "/" + this.getAttribute('data-period');
                     
                     fetch(url)
                         .then(response => response.text())

@@ -15,14 +15,26 @@ Route::get('/reports', function () {
     return view('reports');
 })->name("reports");
 
-Route::get('/reports-cal', function () {
-    $dtListService = new \App\Services\MonthGeneratorService(new \DateTime());
+Route::get('/reports-cal/{dt?}', function ($dt=null) {
+    
+    if ($dt) {
+        $dtObj = \DateTime::createFromFormat("Y-m-d", $dt);
+    } else {
+        $dtObj = new \DateTime();
+    }
+    
+    $month = \App\Services\Month::createFromDt($dtObj->format("Y-m-d"));
+    
+    $dtListService = new \App\Services\MonthGeneratorService($dtObj);
     $dtList = $dtListService->run();
     
     return view('reports-cal', [
-        'dtList' => $dtList
+        'dtList' => $dtList,
+        'month' => $month->getName(),
+        'prev' => $month->getPrev()->getMinDt(),
+        'next' => $month->getNext()->getMinDt()
     ]);
-})->name("reports-cal");
+})->where("dt", "\d{4}-\d{2}-\d{2}")->name("reports-cal");
 
 Route::get('/task-group', function () {
     return view('task-group');

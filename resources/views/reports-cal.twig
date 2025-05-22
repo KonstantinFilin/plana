@@ -1,21 +1,21 @@
     <table class="table table-condensed">
-   {# <tr>
+    <tr>
         <th class="text-center">
             <button type="button" class="btn btn-outline-secondary planner-control"
-                    data-period='' data-dt="">
+                    data-dt="{{ prev }}">
                 <img src="/i/arrow-left.svg" width="50" height="50" />
             </button>
         </th>
-        <th colspan="{{ pv.getDtList | length }}" class="text-center">
-
+        <th colspan="7" class="text-center">
+            {{ month }}
         </th>
         <th class="text-center">
             <button type="button" class="btn btn-outline-secondary planner-control"
-                    data-period='{{ pv.periodDuration }}' data-dt="{{ pv.getNextDt.format("Ymd") }}">
+                    data-dt="{{ next }}">
                 <img src="/i/arrow-right.svg" width="50" height="50" />
             </button>
         </th>
-    </tr>      #}
+    </tr>
     <tr>
         <th style="border: none;"></th>
         <th class="text-center" colspan="7"></th>
